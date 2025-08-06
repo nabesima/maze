@@ -30,6 +30,7 @@ def init
   
   $input = ARGV.shift
   $scale = ARGV.shift.to_i unless ARGV.empty?
+  puts "\e[H\e[2J"
 
   # キー入力で速度調整処理
   Thread.new {
@@ -217,7 +218,7 @@ class Robot
 
     def print(force = false)
       return if @steps % $skip != 0 and !force
-      puts "\e[H\e[2J"
+      puts "\e[H"
       puts "#{@steps} steps (wait: #{$sleep}msec, skip: #{$skip})\r"
       puts maze.to_s($scale, x, y)
     end
